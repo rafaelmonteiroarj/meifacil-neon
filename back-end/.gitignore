@@ -1,0 +1,8 @@
+db.development.sqlite
+yarn-debug.log*
+yarn-error.log*
+yarn.lock*
+package-lock*
+/node_modules
+/build
+/test/coverage

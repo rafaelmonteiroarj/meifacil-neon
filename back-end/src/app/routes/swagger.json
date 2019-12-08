@@ -1,0 +1,186 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API provedora para os MEI cobrarem seus cliente por cartão.",
+    "version": "1.0.0",
+    "title": "Teste MEI Fácil",
+    "contact": {
+      "email": "viniciusmonteiroarjonas@outlook.com"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Determinando o status de integridade do servidor",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/charges": {
+      "post": {
+        "tags": ["Charges"],
+        "summary": "Adicionar nova cobrança",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Adicionar uma nova cobrança",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Charge"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Charges"],
+        "summary": "Listar todas cobranças",
+        "description": "Visualizar todas cobranças",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Charge"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/charges/{id}": {
+      "get": {
+        "tags": ["Charges"],
+        "summary": "Visualizar uma cobrança",
+        "description": "Visualizar uma única cobrança pelo ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID de uma cobrança",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Charge"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/chargesByStatus/{status}": {
+      "get": {
+        "tags": ["Charges"],
+        "summary": "Visualizar cobranças por status",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "description": "Status de uma cobrança",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Charge": {
+      "type": "object",
+      "required": ["name", "email", "value", "installmentPayment", "dateDue"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Vinicius Monteiro Arjonas"
+        },
+        "email": {
+          "type": "string",
+          "example": "viniciusmonteiroarjonas@outlook.com"
+        },
+        "description": {
+          "type": "string",
+          "example": "Compra de um celular"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        },
+        "dateDue": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "balanceStatus": {
+          "type": "string",
+          "enum": ["released", "not_released", "cancelled"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

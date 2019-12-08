@@ -1,0 +1,84 @@
+{
+  "name": "meifacil-backend",
+  "version": "1.0.0",
+  "description": "Desafio - Neste desafio você deverá resolver um problema, muito parecido com um problema real da MEI Fácil.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf build && tsc -p tsconfig.json",
+    "db:up": "yarn sequelize db:migrate && yarn sequelize db:seed:all",
+    "db:roolback": "yarn sequelize db:migrate:undo",
+    "dev": "nodemon --inspect -e ts -w ./src -x npm run watch:serve",
+    "watch:serve": "ts-node ./src/app.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tsc --noEmit && eslint \"src/**/*.ts\" --quiet --fix",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix",
+    "start": "node ./build/app.js",
+    "test": "jest",
+    "test-lint": "lint-staged",
+    "composer:up": "docker build -t mei-facil . && docker run -p 3000:3000 mei-facil"
+  },
+  "author": "viniciusmonteiroarj",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/polyfill": "^7.7.0",
+    "@types/express": "^4.17.2",
+    "@types/express-validator": "^3.0.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.11",
+    "@types/sequelize": "^4.28.6",
+    "@types/source-map-support": "^0.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "babel-jest": "^24.9.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "jest-matcher-one-of": "^1.0.2",
+    "lint-staged": "^9.4.2",
+    "nock": "^11.7.0",
+    "nodemon": "^2.0.1",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "sequelize-cli": "^5.4.0",
+    "source-map-support": "^0.5.16",
+    "tedious": "^6.6.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "@types/validator": "^10.11.3",
+    "assert": "^2.0.0",
+    "axios": "^0.19.0",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^5.3.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "mysql2": "^2.0.0",
+    "sequelize": "^5.8.6",
+    "sqlite3": "^4.1.0",
+    "swagger-ui-express": "^4.1.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4",
+    "winston": "^3.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run lint:fix",
+      "npm run lint",
+      "git add"
+    ]
+  }
+}

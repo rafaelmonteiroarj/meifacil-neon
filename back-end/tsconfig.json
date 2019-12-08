@@ -1,0 +1,37 @@
+{
+  /** Documentação: https://www.typescriptlang.org/docs/handbook/compiler-options.html */
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es6",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "noEmitOnError": false,                   /* Não emita saídas se algum erro foi relatado. (build) */
+    "lib": ["es6"],                             /* Especifique os arquivos da biblioteca a serem incluídos na compilação. */
+    "pretty": true,
+    "outDir": "build",                        /* Redirecione a estrutura de saída para o diretório. */
+    "strict": true,                           /* Habilite todas as opções estritas de verificação de tipo. */
+    "noImplicitAny": false,                    /* Aumente o erro nas expressões e declarações com um tipo implícito 'any'. */
+    "strictNullChecks": true,                 /* Habilite verificações nulas estritas. */
+    /* Additional Checks */
+    "noUnusedLocals": true,                   /* Relatar erros em locais não utilizados. */
+    "noUnusedParameters": true,               /* Relatar erros em parâmetros não utilizados. */
+    /* Module Resolution Options */
+    "moduleResolution": "node",               /* Especifique a estratégia de resolução do módulo: 'node' (Node.js) ou 'classic' (TypeScript pré-1.6). */
+    "baseUrl": ".",                           /* Diretório base para resolver nomes de módulo não absolutos. */
+    "allowSyntheticDefaultImports": true,     /* Permitir importações padrão de módulos sem exportação padrão. Isso não afeta a emissão do código, apenas a digitação. */
+    "esModuleInterop": true,                  /* Permite a interoperabilidade de emissão entre os módulos CommonJS e ES por meio da criação de objetos de espaço para nome para todas as importações. Implica 'allowSyntheticDefaultImports'. */
+    /* Experimental Options */
+    "experimentalDecorators": true,        /* Permite suporte experimental para decoradores do ES7. */
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "useBabel": true
+  }
+}

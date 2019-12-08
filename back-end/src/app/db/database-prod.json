@@ -1,0 +1,10 @@
+{
+  "production": {
+    "username": "SA",
+    "password": "neon",
+    "database": "meifacil",
+    "host": "localhost",
+    "port": "11433",
+    "dialect": "mssql"
+  }
+}
